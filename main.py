@@ -1,7 +1,7 @@
 
-todos = []
+todos = ["clean", "prepare", "learn"]
 while True:
-    userAction = input("Type add, show or exit: ")
+    userAction = input("Type add, show. exit or exit: ")
     userAction = userAction.strip()
 
     match userAction:
@@ -11,6 +11,11 @@ while True:
         case "show":
             for item in todos:
                 print(item)
+        case "edit":
+            number = int(input("Number of todo to edit: "))
+
+            newTodo = input("Enter a new todo: ")
+            todos[number] = newTodo
         case "exit":
             break
         case whatever:
