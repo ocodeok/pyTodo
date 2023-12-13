@@ -1,23 +1,9 @@
-def getTodos(filepath="files/tasks.tsk"):
-    """ Read a text file and return the list of to-do items\n
-    --------- ---------------------------------------------------------------\n
-    'filepath'      the base path to the file and default value is "files/tasks.tsk" """
-    with open(filepath, "r") as file:
-        todos = file.readlines()
-    return todos
+from modules.functions import getTodos, writeTodos
 
+import time
 
-def writeTodos(todos, filepath="files/tasks.tsk"):
-    """ Write the to-do items list in the text file\n
-    --------- ---------------------------------------------------------------\n
-    'filepath'      the base path to the file and default value is "files/tasks.tsk"\n
-    'todos' - list of to-do items """
-
-    with open(filepath, "w") as file:
-        file.writelines(todos)
-
-# todos = ["clean\n", "prepare\n", "learn\n"]
 todos = []
+now = time.strftime("%d/%m/%Y %H:%M:%S  %B %A")
 
 while True:
     userAction = input("\nType add, show. exit, complete or exit: ")
