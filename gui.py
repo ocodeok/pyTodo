@@ -1,10 +1,20 @@
 import time
+import os
 
 # installed modules
 import PySimpleGUI as sg
 
 # base modules
 from modules.functions import getTodos, writeTodos
+
+#  Bug fix if the directory is missing
+if not os.path.exists("files"):
+    os.makedirs("files")
+
+# Bug fix if the file is missing
+if not os.path.exists("files/tasks.tsk"):
+    with open("files/tasks.tsk", "w") as file:
+        pass
 
 # text elements
 clock = sg.Text(time.strftime("%d/%m/%Y %H:%M:%S  %B %A"), key="Clock")
