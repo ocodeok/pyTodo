@@ -1,7 +1,20 @@
-def getTodos():
-    with open("files/tasks.tsk", "r") as file:
+def getTodos(filepath="files/tasks.tsk"):
+    """ Read a text file and return the list of to-do items\n
+    --------- ---------------------------------------------------------------\n
+    'filepath'      the base path to the file and default value is "files/tasks.tsk" """
+    with open(filepath, "r") as file:
         todos = file.readlines()
     return todos
+
+
+def writeTodos(todos, filepath="files/tasks.tsk"):
+    """ Write the to-do items list in the text file\n
+    --------- ---------------------------------------------------------------\n
+    'filepath'      the base path to the file and default value is "files/tasks.tsk"\n
+    'todos' - list of to-do items """
+
+    with open(filepath, "w") as file:
+        file.writelines(todos)
 
 # todos = ["clean\n", "prepare\n", "learn\n"]
 todos = []
@@ -17,8 +30,7 @@ while True:
 
         todos.append(todo.capitalize() + "\n")
 
-        with open("files/tasks.tsk", "w") as file:
-            file.writelines(todos)
+        writeTodos(todos)
     elif userAction.startswith("show"):
         todos = getTodos()
 
@@ -33,8 +45,7 @@ while True:
             newTodo = input("Enter a new todo: ")
             todos[number] = newTodo + "\n"
 
-            with open("files/tasks.tsk", "w") as file:
-                file.writelines(todos)
+            writeTodos(todos)
         except ValueError:
             print("Incorrect command form. You only need to enter the task number")
             continue
@@ -47,8 +58,7 @@ while True:
                 removedTodo = todos[number].strip("\n")
                 todos.pop(number)
 
-                with open("files/tasks.tsk", "w") as file:
-                    file.writelines(todos)
+                writeTodos(todos)
 
                 message = f"Todo {removedTodo} was removed from the list."
                 print(message)
